@@ -26,6 +26,7 @@ pgClient
 
 // Redis Client Setup
 const redis = require('redis');
+console.log("#### Connect to Redis ####");
 const redisClient = redis.createClient({
   host: keys.redisHost,
   port: keys.redisPort,
@@ -46,6 +47,7 @@ app.get('/values/all', async (req, res) => {
 });
 
 app.get('/values/current', async (req, res) => {
+  console.log("#### Get current from redis ####")
   redisClient.hgetall('values', (err, values) => {
     res.send(values);
   });
